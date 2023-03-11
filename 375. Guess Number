@@ -25,6 +25,7 @@ int solve(long i,long j,long n){
     int getMoneyAmount(int n) {
         memset(dp,-1,sizeof(dp));
          return solve(1,n,n);
+         
         
     }
 };
