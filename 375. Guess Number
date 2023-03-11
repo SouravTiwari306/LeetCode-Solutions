@@ -1,0 +1,30 @@
+class Solution {
+public:
+int dp[210][210];
+int solve(long i,long j,long n){
+    if(i==j){
+        return 0;
+    }
+    if(dp[i][j]!=-1){
+        return dp[i][j];
+    }
+    long ans=INT_MAX;
+    long a=0,b=0,c=0;
+    for(long  k=i;k<=j;k++){
+        a=k;
+        if(k>1){
+        b=k+solve(i,k-1,n);
+        }
+        if(k<n){
+        c=k+solve(k+1,j,n);
+        }
+        ans= min(ans,max({a,b,c}));
+    }
+    return dp[i][j]=ans;
+}
+    int getMoneyAmount(int n) {
+        memset(dp,-1,sizeof(dp));
+         return solve(1,n,n);
+        
+    }
+};
