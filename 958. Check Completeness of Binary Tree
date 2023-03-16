@@ -1,0 +1,58 @@
+
+class Solution {
+public:
+ 
+    bool isCompleteTree(TreeNode* root) {
+        if(root==NULL){
+            return true;
+        }
+        queue<TreeNode *> q;
+        q.push(root);
+            bool ispos=false;
+
+        while(!q.empty()){
+            int a= q.size();
+            
+            while(a--){
+                TreeNode *temp =q.front();
+                q.pop();
+                bool isleft=true;
+                 if(!ispos){
+                if(temp->left!=NULL ){
+                  q.push(temp->left);
+                }else{
+                     isleft=false;
+                }
+                }else{
+                    if(temp->left!=NULL){
+                        return false;
+                    }else{
+                      isleft=false;
+                    }
+                    
+                }
+                if(!ispos){
+                if(isleft){
+                 if( temp->right!=NULL){
+                     q.push(temp->right);
+                 }else{
+                     ispos=true;
+                 }
+                }else{
+                    if(temp->right!=NULL){
+                     return false;
+                 }else{
+                     ispos=true;
+                 }
+                }
+                }else{
+                    if(temp->right!=NULL){
+                        return false;
+                    }
+
+                }
+            }
+        }
+        return true;
+    }
+};
