@@ -1,0 +1,48 @@
+class Solution {
+public:
+bool static  comp(pair<string,string>&a,pair<string,string> &b){
+    if(a.second> b.second){
+        return false;
+    }else{
+        if(a.second==b.second){
+            return a.first<b.first;
+        }else{
+            return true;
+        }
+    }
+}
+    vector<string> reorderLogFiles(vector<string>& logs) {
+        vector<pair<string,string>>p;
+        vector<string >b;
+        for(int i=0;i<logs.size();i++){
+            string s= logs[i];
+            string a="";
+            int j=0;
+            while(s[j]!=' '){
+                a.push_back(s[j]);
+                j++;
+            }
+            j++;
+            //cout<<
+            if(s[j]-'0'>=0 && s[j]-'0'<=9){
+                b.push_back(s);
+            }else{
+                string x= s.substr(j);
+                p.push_back({a,x});
+            }
+
+        }
+        sort(p.begin(),p.end(),comp);
+        vector<string> ans;
+        for(auto it : p){
+            string a= it.first+" "+it.second;
+            ans.push_back(a);
+        }
+        for(auto it :b){
+            ans.push_back(it);
+        }
+        return ans;
+
+        
+    }
+};
